@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:web="http://java.sun.com/xml/ns/javaee"
+        xmlns="http://java.sun.com/xml/ns/javaee"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+        version="3.0">
+
+  <display-name>muuga</display-name>
+
+  <listener>
+    <listener-class>net.sf.ehcache.constructs.web.ShutdownListener</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.sys.servlet.LoadCertificates</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.sys.servlet.DaemonRoot</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectUserActivateTrigger</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectUserLoginTrigger</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectBuddyFollowTrigger</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectBuddyUnfollowTrigger</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectBuddyHateTrigger</listener-class>
+  </listener>
+
+  <listener>
+    <listener-class>com.github.cuter44.muuga.easemob.servlet.InjectBuddyUnhateTrigger</listener-class>
+  </listener>
+
+  <filter>
+    <filter-name>ApiSignVerifier</filter-name>
+    <filter-class>com.github.cuter44.muuga.user.filter.ApiSignVerifier</filter-class>
+    <init-param>
+      <param-name>nameUid</param-name> 
+      <param-value>uid</param-value> 
+    </init-param>
+    <init-param>
+      <param-name>nameS</param-name> 
+      <param-value>s</param-value> 
+    </init-param>
+  </filter>
+  <filter-mapping>
+    <filter-name>ApiSignVerifier</filter-name>
+    <url-pattern>/security/vrfy-sign.api</url-pattern>
+  </filter-mapping>
+
+  <!--
+  <servlet>
+    <servlet-name></servlet-name>
+    <servlet-class></servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name></servlet-name>
+    <url-pattern></url-pattern>
+  </servlet-mapping>
+  -->
+
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+</web-app>
+    
