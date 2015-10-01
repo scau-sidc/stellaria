@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="com.github.scausidc.stellaria.letter.model.LetterSession" table="letter_lettersession">
+        <id	name="id" type="long">
+            <generator class="identity"/>
+        </id>
+
+        <property name="openid" type="string" length="32" />
+        
+        <property name="lastReceive" type="timestamp" />
+        <property name="lastRead" type="timestamp" />
+        <property name="lastReply" type="timestamp" />
+
+        <property name="archived" type="boolean" />
+
+    </class>
+</hibernate-mapping>
