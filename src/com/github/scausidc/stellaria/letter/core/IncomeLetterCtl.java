@@ -60,19 +60,31 @@ public class IncomeLetterCtl
             inLet.setMsgType    (MsgType.text.toString());
             inLet.setContent    (m.getContent()         );
 
-            m.setReply(ReplySuccess.getInstance());
+            try
+            {
+                IncomeLetterCtl.this.inLetDao.begin();
 
-            IncomeLetterCtl.this.inLetDao.begin();
+                LetterSession ls = IncomeLetterCtl.this.letSessDao.getOrCreate(inLet.getFromUser());
 
-            LetterSession ls = IncomeLetterCtl.this.letSessDao.getOrCreate(inLet.getFromUser());
+                ls.setArchived(false);
+                ls.setLastReceive(new Date(/*now*/));
 
-            ls.setArchived(false);
-            ls.setLastReceive(new Date(/*now*/));
+                IncomeLetterCtl.this.letSessDao.update(ls);
+                IncomeLetterCtl.this.inLetDao.save(inLet);
 
-            IncomeLetterCtl.this.letSessDao.update(ls);
-            IncomeLetterCtl.this.inLetDao.save(inLet);
+                IncomeLetterCtl.this.inLetDao.commit();
 
-            return(true);
+                m.setReply(ReplySuccess.getInstance());
+
+                return(true);
+            }
+            finally
+            {
+                IncomeLetterCtl.this.inLetDao.close();
+            }
         }
     }
+
+    public final TextMsgSerializer textMsgHandler = new TextMsgSerializer();
+
 }
