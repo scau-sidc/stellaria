@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="GBK"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+  <class name="com.github.scausidc.stellaria.letter.model.Letter" table="letter_letter">
+    <id	name="id" type="long">
+        <generator class="identity"/>
+    </id>
+    <discriminator column="class"/>
+
+    <property name="remote" type="string" length="32" />
+    <property name="content" type="text" length="1024" />
+    <property name="msgType" type="string" length="16" />
+    <property name="tm" type="timestamp" />
+
+    <property name="clazz" type="string" column="class" insert="false" update="false"/>
+
+    <subclass name="com.github.scausidc.stellaria.letter.model.IncomeLetter" discriminator-value="IncomeLetter"/>
+    <subclass name="com.github.scausidc.stellaria.letter.model.OutgoLetter" discriminator-value="OutgoLetter"/>
+  </class>
+</hibernate-mapping>

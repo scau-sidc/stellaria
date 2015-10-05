@@ -40,7 +40,7 @@ public class OutgoLetterDao extends DaoBase<OutgoLetter>
         OutgoLetter outLet = new OutgoLetter();
 
         outLet.setTm(new Date(/* now */));
-        outLet.setToUser(to);
+        outLet.setRemote(to);
 
         this.save(outLet);
 
@@ -48,10 +48,10 @@ public class OutgoLetterDao extends DaoBase<OutgoLetter>
     }
 
   // EXTENDED
-    public List<OutgoLetter> forToUser(String toUserOpenid)
+    public List<OutgoLetter> forTarget(String openid)
     {
         DetachedCriteria dc = DetachedCriteria.forClass(this.classOfT())
-            .add(Restrictions.eq("toUser", toUserOpenid))
+            .add(Restrictions.eq("target", openid))
             .addOrder(Order.desc("tm"));
 
         return(

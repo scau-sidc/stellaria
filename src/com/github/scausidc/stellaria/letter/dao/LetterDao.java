@@ -7,10 +7,10 @@ import com.github.cuter44.nyafx.dao.*;
 
 import com.github.scausidc.stellaria.letter.model.*;
 
-public class IncomeLetterDao extends DaoBase<IncomeLetter>
+public class LetterDao extends DaoBase<Letter>
 {
   // CONSTRUCT
-    public IncomeLetterDao()
+    public LetterDao()
     {
         super();
     }
@@ -18,10 +18,10 @@ public class IncomeLetterDao extends DaoBase<IncomeLetter>
   // SINGLETON
     private static class Singleton
     {
-        public static IncomeLetterDao instance = new IncomeLetterDao();
+        public static LetterDao instance = new LetterDao();
     }
 
-    public static IncomeLetterDao getInstance()
+    public static LetterDao getInstance()
     {
         return(Singleton.instance);
     }
@@ -30,11 +30,11 @@ public class IncomeLetterDao extends DaoBase<IncomeLetter>
     @Override
     public Class classOfT()
     {
-        return(IncomeLetter.class);
+        return(Letter.class);
     }
 
   // EXTENDED
-    public List<IncomeLetter> forTarget(String openid)
+    public List<Letter> forTarget(String openid)
     {
         DetachedCriteria dc = DetachedCriteria.forClass(this.classOfT())
             .add(Restrictions.eq("target", openid))

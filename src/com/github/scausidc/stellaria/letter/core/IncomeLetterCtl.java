@@ -55,7 +55,7 @@ public class IncomeLetterCtl
 
             IncomeLetter inLet = new IncomeLetter();
 
-            inLet.setFromUser   (m.getFromUserName()    );
+            inLet.setRemote     (m.getFromUserName()    );
             inLet.setTm         (m.getCreateTime()      );
             inLet.setMsgType    (MsgType.text.toString());
             inLet.setContent    (m.getContent()         );
@@ -64,7 +64,7 @@ public class IncomeLetterCtl
             {
                 IncomeLetterCtl.this.inLetDao.begin();
 
-                LetterSession ls = IncomeLetterCtl.this.letSessDao.getOrCreate(inLet.getFromUser());
+                LetterSession ls = IncomeLetterCtl.this.letSessDao.getOrCreate(inLet.getRemote());
 
                 ls.setArchived(false);
                 ls.setLastReceive(new Date(/*now*/));

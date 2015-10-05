@@ -44,8 +44,7 @@
 
     <!-- 映射持久类 -->
     <mapping resource="com/github/scausidc/stellaria/letter/model/LetterSession.hbm.xml" />
-    <mapping resource="com/github/scausidc/stellaria/letter/model/IncomeLetter.hbm.xml" />
-    <mapping resource="com/github/scausidc/stellaria/letter/model/OutgoLetter.hbm.xml" />
+    <mapping resource="com/github/scausidc/stellaria/letter/model/Letter.hbm.xml" />
 
   </session-factory>
 </hibernate-configuration>
