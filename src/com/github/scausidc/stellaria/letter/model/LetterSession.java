@@ -20,6 +20,19 @@ public class LetterSession  implements java.io.Serializable {
     public LetterSession() {
     }
 
+    public LetterSession(String openid)
+    {
+        this.openid = openid;
+
+        this.lastReceive = new Date(0L);
+        this.lastRead = new Date(0L);
+        this.lastReply = new Date(0L);
+
+        this.archived = false;
+
+        return;
+    }
+
     public Long getId() {
         return this.id;
     }

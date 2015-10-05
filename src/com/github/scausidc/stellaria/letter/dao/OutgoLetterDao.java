@@ -1,6 +1,7 @@
 package com.github.scausidc.stellaria.letter.dao;
 
 import java.util.List;
+import java.util.Date;
 
 import org.hibernate.criterion.*;
 import com.github.cuter44.nyafx.dao.*;
@@ -31,6 +32,19 @@ public class OutgoLetterDao extends DaoBase<OutgoLetter>
     public Class classOfT()
     {
         return(OutgoLetter.class);
+    }
+
+  // CREATE
+    public OutgoLetter create(String to)
+    {
+        OutgoLetter outLet = new OutgoLetter();
+
+        outLet.setTm(new Date(/* now */));
+        outLet.setToUser(to);
+
+        this.save(outLet);
+
+        return(outLet);
     }
 
   // EXTENDED

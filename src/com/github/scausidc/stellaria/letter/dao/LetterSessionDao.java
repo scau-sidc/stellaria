@@ -52,9 +52,7 @@ public class LetterSessionDao extends DaoBase<LetterSession>
             return(ls);
 
         // else
-        ls = new LetterSession();
-        ls.setOpenid(openid);
-        ls.setArchived(false);
+        ls = new LetterSession(openid);
 
         this.save(ls);
 
